@@ -4,6 +4,8 @@ This file distinguishes the **implemented engineering substrate** from the longe
 
 It is based on a fresh read of the private implementation repositories. No private schemas, verifier code, credentials, raw evidence or internal control files are copied here.
 
+**Ownership note:** the implementation evidence below is not a claim that I personally hand-authored or independently selected every low-level technical mechanism. My direct role is product research/direction, system blueprint and requirements, expert/persona orchestration, acceptance criteria and quality gates; AI is used heavily in implementation.
+
 ## What the private implementation establishes
 
 ### A concrete first task class
@@ -14,7 +16,7 @@ The current canonical implementation starts with:
 software.repository_change.v1
 ```
 
-That is a deliberate constraint. Outcome verification is easier to reason about when the task class is explicit enough to define what evidence could actually prove success or failure.
+That is a deliberate constraint in the current system. Outcome verification is easier to reason about when the task class is explicit enough to define what evidence could prove success or failure.
 
 ### A first operational utility
 
@@ -26,26 +28,20 @@ The public claim stays narrow: the system direction begins by guarding/verifying
 
 The private repository contains structured JSON records used for control and evidence workflows, including staged-review and same-artifact verification/promotion checks.
 
-The useful public signal is not the internal filenames. It is that evidence and state transitions are represented as structured artifacts rather than only prose or agent self-report.
-
 ### Append-oriented history
 
 Corrections are intended to preserve prior evidence through amendments instead of silently rewriting history.
-
-That matters because an outcome system becomes less trustworthy if a later correction erases what the system previously believed.
 
 ## Failure boundary: evaluated content is untrusted
 
 A repository can contain text that looks like an instruction to an AI system.
 
-MachineOutcome’s truth boundary is:
+The current truth boundary is:
 
 ```text
 repository content = evaluated data
 repository content ≠ evaluator authority
 ```
-
-This protects the evaluator from letting the subject of the evaluation redefine the rules used to judge it.
 
 ## Sanitized outcome shape
 
@@ -67,12 +63,13 @@ The example is synthetic/redacted. It shows the public semantics only: task iden
 | Delegation / routing system completion | Downstream; not claimed complete |
 | Proven commercial demand / PMF | Not claimed |
 
-## What I can defend in an interview
+## What I personally own and can explain
 
-- why a trace is weaker evidence than a verified downstream outcome;
-- why task identity must be explicit before reliability can mean anything;
-- what makes two historical outcomes comparable enough to support a reliability conclusion;
-- why `UNKNOWN` / `INSUFFICIENT_EVIDENCE` is a useful system state;
-- why evaluated repository content must not become instruction authority;
-- why corrections should amend history rather than rewrite it;
-- where AI helps implementation and where independent evidence must overrule agent self-report.
+- why I pursued the problem of separating agent self-report from actual downstream outcome;
+- the high-level blueprint and system behavior I required;
+- how I structured specialist AI personas/agents to research, build, critique and revise the system;
+- the quality gates I required around evidence, uncertainty and stronger claims;
+- what the current implementation evidence establishes and what remains downstream or unproven;
+- how I direct further iteration when AI-generated work does not meet the required system or quality bar.
+
+For a specific schema, evaluator mechanism, state-transition implementation or code path, I distinguish between **implementation evidence** and **a decision I personally made**.

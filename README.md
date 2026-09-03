@@ -82,3 +82,9 @@ I intentionally avoid publishing a broader stack claim here unless it is directl
 - completion of every planned reliability, delegation or routing layer.
 
 The case study is strongest when read as **outcome-verification engineering**, not as a claim that the full long-term system is already finished.
+
+## Related engineering case studies
+
+- [Agent Cashflow OS](https://github.com/SamCT86/agent-cashflow-os-case-study) — forecast provenance, calibration and held-out evaluation discipline.
+- [ReleaseProof](https://github.com/SamCT86/releaseproof-case-study) — exact-artifact verification and reproducible evidence.
+- [Billable Meetings OS](https://github.com/SamCT86/billable-meetings-os-case-study) — deterministic business-rule verification with explicit review states.

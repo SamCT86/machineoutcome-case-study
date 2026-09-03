@@ -1,22 +1,31 @@
-# MachineOutcome — Public Engineering Case Study
+# MachineOutcome — verified outcomes before agent trust
 
+**Sarmad Tawfeek · AI systems · technical implementation · automation**  
 **Status:** Building  
-**Focus:** Evidence-backed AI-agent outcomes and task-specific reliability  
 **Portfolio:** https://sarmadtawfeek.se/
 
-> This repository is a public case study of the problem, system boundary and engineering decisions. The implementation source remains private by design.
+MachineOutcome starts from a narrower question than “how trustworthy is this agent?”
 
-## The problem
+> **What actually happened after this specific agent attempted this specific task, and what evidence supports that conclusion?**
 
-Agent traces, benchmark scores and generic “trust” language do not automatically tell an operator what actually happened after an agent attempted a task.
+The current first task class is **software repository change** rather than a universal agent score.
 
-MachineOutcome explores a stronger boundary:
+## What exists today
 
-**Verify the downstream outcome first. Only reason about history, reliability or delegation when comparable evidence is strong enough.**
+The private engineering implementation is separate from the public website and is organized around:
 
-The current engineering direction starts with software repository changes as a concrete task class rather than attempting a universal score for every kind of agent.
+- a concrete first task class: `software.repository_change.v1`;
+- task / attempt / evidence / outcome identity;
+- an initial operational utility called **Agent Change Outcome Guard**;
+- append-oriented evidence and correction semantics;
+- structured control/evidence records for review and same-artifact verification workflows;
+- a dependency order where reliability, delegation and routing remain downstream of verified outcome evidence.
 
-## System at a glance
+That means this repo is not presenting a future reliability score as if it already existed.
+
+**Start with the evidence layer:** [PROOF.md](PROOF.md)
+
+## System boundary
 
 ```text
 Task
@@ -25,65 +34,51 @@ Agent attempt
   ↓
 Inspectable evidence
   ↓
-Verified outcome record
+VERIFIED / FAILED / UNKNOWN
   ↓
-Comparable history
+Outcome receipt / history
   ↓
-Task-specific decision support
+Only with comparable evidence:
+reliability / delegation support
 ```
 
-## What I want a technical reviewer to inspect
+## A failure case that changes the architecture
 
-- **Outcomes over impressions.** A plausible trace is not equivalent to a verified downstream result.
-- **Task-specific evidence.** Reliability should not become a universal score detached from comparable work.
-- **`UNKNOWN` is useful.** Insufficient evidence should remain insufficient.
-- **History should not silently rewrite itself.** Corrections should preserve what changed rather than erasing prior evidence.
-- **External content is data, not instruction authority.** A repository being evaluated should not be able to redefine the evaluator’s rules.
+A coding agent evaluates repositories that may themselves contain prompt-like text or instructions.
 
-## AI-native build approach
+If that content can redefine the evaluator’s rules, the evaluator is no longer independent of the thing being measured.
 
-This is an AI system built with an AI-assisted workflow. That makes the verification boundary more important, not less.
+MachineOutcome therefore treats repository/task content as **untrusted data, not instruction authority**. That is a security and truth boundary, not just a prompt-engineering preference.
 
-AI helps me explore implementation paths, reason across system components, generate implementation candidates and surface edge cases. I still treat the problem definition, evidence authority, acceptance criteria, uncertainty and final system behavior as explicit responsibilities.
+## Where AI fits
 
-```text
-Operational question
-      ↓
-Task + evidence boundary
-      ↓
-AI-assisted exploration / implementation
-      ↓
-Outcome evidence ingestion
-      ↓
-Explicit verification state
-      ↓
-Only then: history / reliability reasoning
-```
+AI helps me explore implementation paths, reason across components, generate implementation candidates and surface edge cases. The evaluator still needs explicit authority rules, task identity and evidence requirements.
+
+A model-generated “success” statement is not outcome proof.
 
 More detail: [docs/HOW_I_BUILD_WITH_AI.md](docs/HOW_I_BUILD_WITH_AI.md)
 
 ## Technical context
 
-The current build direction includes AI-agent workflows, Git/GitHub evidence, structured verification/evaluation and deterministic decision boundaries. Exact private implementation details are intentionally not reproduced here.
+`AI-agent workflows` · `Git / GitHub evidence` · `structured verification` · `provenance` · `deterministic outcome states`
 
-## Verification mindset
+I intentionally avoid publishing a broader stack claim here unless it is directly tied to the current MachineOutcome implementation evidence.
 
-MachineOutcome treats the outcome record as the foundation. Broader reliability or delegation claims should never outrun the quality and comparability of the underlying evidence.
+## Inspect the proof
 
-See [docs/VERIFICATION.md](docs/VERIFICATION.md).
+- [Observable proof](PROOF.md)
+- [Sanitized outcome example](examples/sanitized-outcome.json)
+- [System view](docs/SYSTEM_VIEW.md)
+- [Engineering decisions](docs/DECISIONS.md)
+- [Verification approach](docs/VERIFICATION.md)
+- [Public / private boundary](PUBLIC_BOUNDARY.md)
 
-## Current truth boundary
-
-This repository does **not** claim:
+## Not claimed
 
 - a universal agent trust score;
 - broad task coverage;
 - proven commercial demand;
 - product-market fit;
-- that every longer-term reliability or routing layer is already implemented.
+- completion of every planned reliability, delegation or routing layer.
 
-## Public / private boundary
-
-Private source code, internal contracts, verifier logic, schemas, raw evidence, governance material and implementation details that would materially reproduce the product remain private.
-
-See [PUBLIC_BOUNDARY.md](PUBLIC_BOUNDARY.md).
+The case study is strongest when read as **outcome-verification engineering**, not as a claim that the full long-term system is already finished.

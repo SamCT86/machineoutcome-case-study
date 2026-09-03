@@ -1,0 +1,17 @@
+{
+  "example_type": "synthetic_redacted_portfolio_example",
+  "task": {
+    "class": "software.repository_change.v1",
+    "task_id": "task_<redacted>"
+  },
+  "attempt": {
+    "attempt_id": "attempt_<redacted>",
+    "agent_reported_status": "SUCCESS"
+  },
+  "evidence": {
+    "repository_state_inspected": true,
+    "required_outcome_evidence_complete": false
+  },
+  "verified_outcome": "UNKNOWN",
+  "reason": "The agent reported success, but the available downstream evidence is insufficient for a stronger verified outcome."
+}

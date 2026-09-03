@@ -1,44 +1,38 @@
-# How I build with AI
+# AI in the MachineOutcome workflow
 
-MachineOutcome is an AI-oriented system built in an AI-assisted workflow. The important distinction is between **AI as implementation leverage** and **evidence as the quality gate**.
+MachineOutcome is both an AI system and an AI-assisted build. That makes authority boundaries more important.
 
 ## Where AI helps
 
-I use AI to accelerate work such as:
-
 - exploring system shapes;
-- breaking down ambiguous requirements;
-- drafting and revising implementation candidates;
+- drafting implementation candidates;
+- generating edge cases;
 - reasoning across integration boundaries;
-- generating edge-case and test ideas;
-- reviewing assumptions and documentation.
+- reviewing documentation and assumptions.
 
-## What I do not delegate to plausibility
+## What AI cannot be allowed to decide by plausibility
 
-The workflow still needs an explicit owner for:
-
-- the task being evaluated;
+- what task is being evaluated;
 - what evidence is authoritative;
-- what counts as a verified outcome;
-- when evidence is insufficient;
-- whether two outcomes are actually comparable;
-- which historical facts may be amended rather than silently rewritten;
-- whether external content can influence evaluator rules.
+- whether the downstream outcome actually occurred;
+- whether two historical outcomes are comparable;
+- whether repository content can change evaluator rules;
+- when the only defensible result is `UNKNOWN`.
 
-## My quality model
+## Working loop
 
 ```text
-AI-assisted candidate
-        ↓
-constraint + authority check
-        ↓
-implementation / integration
-        ↓
-independent or inspectable evidence
-        ↓
+task boundary
+   ↓
+AI-assisted implementation
+   ↓
+inspectable evidence
+   ↓
 verified / failed / unknown
-        ↓
-accept / revise / narrow the claim
+   ↓
+only then: history and reliability reasoning
 ```
 
-The goal is not to prove that every line was handwritten. The goal is to show that AI can increase execution speed without replacing system judgment or evidence discipline.
+A generated implementation or agent self-report is a candidate explanation. The quality gate is whether independent or inspectable evidence supports the outcome claim.
+
+For concrete implementation evidence, see [../PROOF.md](../PROOF.md).

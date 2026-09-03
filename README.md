@@ -4,6 +4,12 @@
 **Status:** Building  
 **Portfolio:** https://sarmadtawfeek.se/
 
+## My role in this build
+
+I researched the product/system problem, chose the direction, defined the high-level blueprint and quality expectations, and used specialist AI personas/agents to drive implementation and iteration.
+
+The implementation is heavily AI-assisted. I do **not** claim that I personally hand-wrote every line of code or independently selected every low-level technical mechanism. My direct ownership is the product direction, system requirements, expert/persona orchestration, acceptance criteria and quality gates.
+
 MachineOutcome starts from a narrower question than “how trustworthy is this agent?”
 
 > **What actually happened after this specific agent attempted this specific task, and what evidence supports that conclusion?**
@@ -12,7 +18,7 @@ The current first task class is **software repository change** rather than a uni
 
 ## What exists today
 
-The private engineering implementation is separate from the public website and is organized around:
+Current private-source evidence includes:
 
 - a concrete first task class: `software.repository_change.v1`;
 - task / attempt / evidence / outcome identity;
@@ -42,19 +48,19 @@ Only with comparable evidence:
 reliability / delegation support
 ```
 
-## A failure case that changes the architecture
+These are current system requirements/behaviors; they are not a claim that I personally originated every low-level mechanism used to implement them.
 
-A coding agent evaluates repositories that may themselves contain prompt-like text or instructions.
+## A failure boundary in the system
 
-If that content can redefine the evaluator’s rules, the evaluator is no longer independent of the thing being measured.
+A coding agent may evaluate repositories containing prompt-like text or instructions. If that content can redefine the evaluator’s rules, the thing being measured can influence the measurement process.
 
-MachineOutcome therefore treats repository/task content as **untrusted data, not instruction authority**. That is a security and truth boundary, not just a prompt-engineering preference.
+The current system boundary therefore treats repository/task content as **untrusted data, not instruction authority**.
 
-## Where AI fits
+## How AI fits
 
-AI helps me explore implementation paths, reason across components, generate implementation candidates and surface edge cases. The evaluator still needs explicit authority rules, task identity and evidence requirements.
+AI agents/models are used heavily for implementation, system exploration, edge-case generation, review and iteration.
 
-A model-generated “success” statement is not outcome proof.
+My role is to define the outcome-verification problem, blueprint the required system behavior, structure the expert/persona workflow, set the quality bar and require evidence/quality gates before accepting stronger claims.
 
 More detail: [docs/HOW_I_BUILD_WITH_AI.md](docs/HOW_I_BUILD_WITH_AI.md)
 
@@ -62,14 +68,14 @@ More detail: [docs/HOW_I_BUILD_WITH_AI.md](docs/HOW_I_BUILD_WITH_AI.md)
 
 `AI-agent workflows` · `Git / GitHub evidence` · `structured verification` · `provenance` · `deterministic outcome states`
 
-I intentionally avoid publishing a broader stack claim here unless it is directly tied to the current MachineOutcome implementation evidence.
+This is implementation context, not a claim that I personally selected or authored every technical mechanism.
 
-## Inspect the proof
+## Inspect the case study
 
 - [Observable proof](PROOF.md)
 - [Sanitized outcome example](examples/sanitized-outcome.json)
 - [System view](docs/SYSTEM_VIEW.md)
-- [Engineering decisions](docs/DECISIONS.md)
+- [System requirements & trade-offs](docs/DECISIONS.md)
 - [Verification approach](docs/VERIFICATION.md)
 - [Public / private boundary](PUBLIC_BOUNDARY.md)
 
@@ -79,9 +85,10 @@ I intentionally avoid publishing a broader stack claim here unless it is directl
 - broad task coverage;
 - proven commercial demand;
 - product-market fit;
-- completion of every planned reliability, delegation or routing layer.
+- completion of every planned reliability, delegation or routing layer;
+- personal authorship of every implementation detail.
 
-The case study is strongest when read as **outcome-verification engineering**, not as a claim that the full long-term system is already finished.
+The case study is strongest when read as an AI-native product/system build that I direct and quality-gate, with low-level implementation performed heavily through AI-assisted workflows.
 
 ## Related engineering case studies
 

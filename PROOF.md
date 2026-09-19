@@ -4,7 +4,7 @@ This file distinguishes the **implemented engineering substrate** from the longe
 
 It is based on a fresh read of the private implementation repositories. No private schemas, verifier code, credentials, raw evidence or internal control files are copied here.
 
-**Ownership note:** the implementation evidence below is not a claim that I personally hand-authored or independently selected every low-level technical mechanism. My direct role is product research/direction, system blueprint and requirements, expert/persona orchestration, acceptance criteria and quality gates; AI is used heavily in implementation.
+**Engineering ownership:** AI assistance is used throughout the implementation workflow. I remain accountable for problem framing, architecture constraints, reviewing and debugging changes, acceptance/test gates and release decisions. Where this document cites behavior that remains in the private implementation, it is labeled as implementation evidence rather than as a claim about manual keystroke authorship.
 
 ## What the private implementation establishes
 
@@ -63,7 +63,7 @@ The example is synthetic/redacted. It shows the public semantics only: task iden
 | Delegation / routing system completion | Downstream; not claimed complete |
 | Proven commercial demand / PMF | Not claimed |
 
-## What I personally own and can explain
+## Engineering decisions I own and can explain
 
 - why I pursued the problem of separating agent self-report from actual downstream outcome;
 - the high-level blueprint and system behavior I required;

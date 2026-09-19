@@ -1,0 +1,8 @@
+{
+  "expectedPreState": "sha:pre",
+  "expectedPostState": "sha:post",
+  "observedPreState": "sha:pre",
+  "observedPostState": "sha:post",
+  "readbackComplete": true,
+  "providerAcknowledgement": "ambiguous"
+}

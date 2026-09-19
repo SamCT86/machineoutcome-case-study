@@ -1,97 +1,78 @@
 # MachineOutcome — verified outcomes before agent trust
 
-**Sarmad Tawfeek · AI systems · technical implementation · automation**  
-**Status:** Building  
-**Portfolio:** https://sarmadtawfeek.se/
+A public, executable engineering reference for one MachineOutcome principle: **do not infer success from an attempted mutation; verify the exact resulting state.** The production system remains private.
 
-## My role in this build
+## Five-minute technical evaluation
 
-I researched the product/system problem, chose the direction, defined the high-level blueprint and quality expectations, and used specialist AI personas/agents to drive implementation and iteration.
-
-The implementation is heavily AI-assisted. I do **not** claim that I personally hand-wrote every line of code or independently selected every low-level technical mechanism. My direct ownership is the product direction, system requirements, expert/persona orchestration, acceptance criteria and quality gates.
-
-MachineOutcome starts from a narrower question than “how trustworthy is this agent?”
-
-> **What actually happened after this specific agent attempted this specific task, and what evidence supports that conclusion?**
-
-The current first task class is **software repository change** rather than a universal agent score.
-
-## What exists today
-
-Current private-source evidence includes:
-
-- a concrete first task class: `software.repository_change.v1`;
-- task / attempt / evidence / outcome identity;
-- an initial operational utility called **Agent Change Outcome Guard**;
-- append-oriented evidence and correction semantics;
-- structured control/evidence records for review and same-artifact verification workflows;
-- a dependency order where reliability, delegation and routing remain downstream of verified outcome evidence.
-
-That means this repo is not presenting a future reliability score as if it already existed.
-
-**Start with the evidence layer:** [PROOF.md](PROOF.md)
-
-## System boundary
-
-```text
-Task
-  ↓
-Agent attempt
-  ↓
-Inspectable evidence
-  ↓
-VERIFIED / FAILED / UNKNOWN
-  ↓
-Outcome receipt / history
-  ↓
-Only with comparable evidence:
-reliability / delegation support
+```bash
+git clone https://github.com/SamCT86/machineoutcome-case-study.git
+cd machineoutcome-case-study
+npm test
 ```
 
-These are current system requirements/behaviors; they are not a claim that I personally originated every low-level mechanism used to implement them.
+Then inspect:
 
-## A failure boundary in the system
+- `src/reference-outcome-verifier.mjs` — bounded state-verification reference;
+- `test/reference-outcome-verifier.test.mjs` — adversarial retry/readback tests;
+- `fixtures/verified-after-ambiguous-transport.json` — synthetic provider-state example;
+- `PROOF.md` — broader implementation evidence;
+- `PUBLIC_BOUNDARY.md` — what intentionally stays private.
 
-A coding agent may evaluate repositories containing prompt-like text or instructions. If that content can redefine the evaluator’s rules, the thing being measured can influence the measurement process.
+## What this proves
 
-The current system boundary therefore treats repository/task content as **untrusted data, not instruction authority**.
+The public reference encodes a narrow operational contract:
 
-## How AI fits
+```text
+expected pre-state
+→ mutation attempt
+→ provider/system readback
+→ VERIFIED | FAILED | UNKNOWN
+→ retry only when the observed state makes retry safe
+```
 
-AI agents/models are used heavily for implementation, system exploration, edge-case generation, review and iteration.
+It demonstrates that:
 
-My role is to define the outcome-verification problem, blueprint the required system behavior, structure the expert/persona workflow, set the quality bar and require evidence/quality gates before accepting stronger claims.
+- stale pre-state blocks mutation authority;
+- incomplete readback preserves `UNKNOWN`;
+- an ambiguous transport response is not automatically a failure;
+- exact post-state readback can verify an ambiguously acknowledged mutation;
+- ambiguous state blocks blind retry;
+- a complete but incorrect post-state is `FAILED`.
 
-More detail: [docs/HOW_I_BUILD_WITH_AI.md](docs/HOW_I_BUILD_WITH_AI.md)
+The reference deliberately treats **observed state as stronger evidence than transport optimism**.
 
-## Technical context
+## Why this matters for AI agents
 
-`AI-agent workflows` · `Git / GitHub evidence` · `structured verification` · `provenance` · `deterministic outcome states`
+Agent systems fail in a dangerous way when “the call returned strangely” becomes “retry it” without reconciling what actually happened. A duplicated repository write, deployment, payment, migration or external action can be worse than an explicit failure.
 
-This is implementation context, not a claim that I personally selected or authored every technical mechanism.
+The production MachineOutcome system is materially broader than this sample and includes task/attempt/evidence identity, provenance, append-oriented history, recovery and downstream reliability/delegation work. That private implementation is not published here.
 
-## Inspect the case study
+This repository is a **reference edition**, not a source release of the production runtime.
 
-- [Observable proof](PROOF.md)
-- [Sanitized outcome example](examples/sanitized-outcome.json)
-- [System view](docs/SYSTEM_VIEW.md)
-- [System requirements & trade-offs](docs/DECISIONS.md)
-- [Verification approach](docs/VERIFICATION.md)
-- [Public / private boundary](PUBLIC_BOUNDARY.md)
+## How I build
+
+I use AI agents heavily for implementation, investigation, testing and adversarial review. My ownership is the product problem, evidence doctrine, architecture constraints, acceptance gates, falsifiers and the decision to accept or reject the resulting system.
+
+I do not claim to have hand-written every line. The intended engineering signal is the ability to direct AI-native implementation toward explicit state, falsifiable claims, deterministic verification and safe recovery boundaries.
+
+## Public/private boundary
+
+Public here:
+
+- a bounded state-verification reference;
+- synthetic states;
+- executable tests;
+- CI;
+- non-proprietary system/evidence documentation.
+
+Private:
+
+- production providers and credentials;
+- internal repository IDs, incident details and operator authority;
+- production schemas, storage and recovery implementation;
+- proprietary evaluator/runtime logic;
+- unreleased reliability, delegation and routing systems.
 
 ## Not claimed
 
-- a universal agent trust score;
-- broad task coverage;
-- proven commercial demand;
-- product-market fit;
-- completion of every planned reliability, delegation or routing layer;
-- personal authorship of every implementation detail.
-
-The case study is strongest when read as an AI-native product/system build that I direct and quality-gate, with low-level implementation performed heavily through AI-assisted workflows.
-
-## Related engineering case studies
-
-- [Agent Cashflow OS](https://github.com/SamCT86/agent-cashflow-os-case-study) — forecast provenance, calibration and held-out evaluation discipline.
-- [ReleaseProof](https://github.com/SamCT86/releaseproof-case-study) — exact-artifact verification and reproducible evidence.
-- [Billable Meetings OS](https://github.com/SamCT86/billable-meetings-os-case-study) — deterministic business-rule verification with explicit review states.
+This repository does not claim universal agent reliability, broad task coverage, commercial demand, product-market fit, or that this small reference implementation is the production MachineOutcome runtime.

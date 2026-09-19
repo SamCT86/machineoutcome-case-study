@@ -1,5 +1,7 @@
 # MachineOutcome — verified outcomes before agent trust
 
+[![verify-reference](https://github.com/SamCT86/machineoutcome-case-study/actions/workflows/verify-reference.yml/badge.svg)](https://github.com/SamCT86/machineoutcome-case-study/actions/workflows/verify-reference.yml)
+
 A public, executable engineering reference for one MachineOutcome principle: **do not infer success from an attempted mutation; verify the exact resulting state.** The production system remains private.
 
 ## Five-minute technical evaluation
@@ -72,6 +74,12 @@ Private:
 - production schemas, storage and recovery implementation;
 - proprietary evaluator/runtime logic;
 - unreleased reliability, delegation and routing systems.
+
+## Related runnable references
+
+- [Billable Meetings](https://github.com/SamCT86/billable-meetings-os-case-study) — deterministic contract + evidence → billability.
+- [ReleaseProof](https://github.com/SamCT86/releaseproof-case-study) — exact-artifact identity and evidence integrity.
+- [PriceBriefs](https://github.com/SamCT86/pricebriefs-case-study) — evidence refusal before commercial action.
 
 ## Not claimed
 

@@ -2,7 +2,9 @@
 
 [![verify-reference](https://github.com/SamCT86/machineoutcome-case-study/actions/workflows/verify-reference.yml/badge.svg)](https://github.com/SamCT86/machineoutcome-case-study/actions/workflows/verify-reference.yml)
 
-A public, executable engineering reference for one MachineOutcome principle: **do not infer success from an attempted mutation; verify the exact resulting state.** The production system remains private.
+A small executable reference for one MachineOutcome invariant: **an attempted mutation is not a verified outcome.** The resulting provider/system state must be read back before success or retry is trusted. The production system remains private.
+
+**Portfolio:** https://sarmadtawfeek.se
 
 ## Run locally
 
@@ -12,59 +14,48 @@ cd machineoutcome-case-study
 npm test
 ```
 
-Then inspect:
+Key files:
 
-- `src/reference-outcome-verifier.mjs` — bounded state-verification reference;
+- `src/reference-outcome-verifier.mjs` — bounded state-verification logic;
 - `test/reference-outcome-verifier.test.mjs` — adversarial retry/readback tests;
 - `fixtures/verified-after-ambiguous-transport.json` — synthetic provider-state example;
 - `PROOF.md` — broader implementation evidence;
-- `PUBLIC_BOUNDARY.md` — what intentionally stays private.
+- `PUBLIC_BOUNDARY.md` — public/private boundary.
 
-## What this proves
-
-The public reference encodes a narrow operational contract:
+## Verification contract
 
 ```text
 expected pre-state
 → mutation attempt
 → provider/system readback
 → VERIFIED | FAILED | UNKNOWN
-→ retry only when the observed state makes retry safe
+→ retry only when observed state makes retry safe
 ```
 
-It demonstrates that:
+The reference demonstrates that:
 
 - stale pre-state blocks mutation authority;
 - incomplete readback preserves `UNKNOWN`;
-- an ambiguous transport response is not automatically a failure;
-- exact post-state readback can verify an ambiguously acknowledged mutation;
+- ambiguous transport is not automatically a failure;
+- exact post-state can verify an ambiguously acknowledged mutation;
 - ambiguous state blocks blind retry;
-- a complete but incorrect post-state is `FAILED`.
+- complete but incorrect post-state is `FAILED`.
 
-The reference deliberately treats **observed state as stronger evidence than transport optimism**.
+Observed state outranks transport optimism.
 
-## Why this matters for AI agents
+## Why this matters
 
-Agent systems fail in a dangerous way when “the call returned strangely” becomes “retry it” without reconciling what actually happened. A duplicated repository write, deployment, payment, migration or external action can be worse than an explicit failure.
+Agent systems become dangerous when an unclear response becomes “retry it” without reconciling what actually happened. Duplicate repository writes, deployments, payments, migrations or other external actions can be worse than an explicit failure.
 
-The production MachineOutcome system is materially broader than this sample and includes task/attempt/evidence identity, provenance, append-oriented history, recovery and downstream reliability/delegation work. That private implementation is not published here.
+## Production boundary
 
-This repository is a **reference edition**, not a source release of the production runtime.
-
-## Engineering ownership
-
-AI tools are part of my implementation workflow. I use them to accelerate investigation, implementation, testing and review, while remaining accountable for the system boundary, architecture constraints, code review, debugging, acceptance criteria and the decision to ship or reject a change.
-
-The useful question here is not who typed each token. It is whether the behavior is explicit, testable, reproducible and safe under failure. The executable tests and design trade-offs in this repository are the public evidence for that claim.
-
-## Public/private boundary
+The private MachineOutcome implementation is materially broader: task/attempt/evidence identity, provenance, append-oriented history, recovery, reliability and delegation/routing work. That implementation is not published here.
 
 Public here:
 
-- a bounded state-verification reference;
+- bounded state-verification logic;
 - synthetic states;
-- executable tests;
-- CI;
+- executable tests and CI;
 - non-proprietary system/evidence documentation.
 
 Private:
@@ -75,12 +66,16 @@ Private:
 - proprietary evaluator/runtime logic;
 - unreleased reliability, delegation and routing systems.
 
-## Related runnable references
+## Engineering process
+
+AI tools are part of the implementation workflow. I remain accountable for system boundaries, architecture constraints, code review, debugging, acceptance criteria, tests and release decisions.
+
+## Related references
 
 - [Billable Meetings](https://github.com/SamCT86/billable-meetings-os-case-study) — deterministic contract + evidence → billability.
 - [ReleaseProof](https://github.com/SamCT86/releaseproof-case-study) — exact-artifact identity and evidence integrity.
 - [PriceBriefs](https://github.com/SamCT86/pricebriefs-case-study) — evidence refusal before commercial action.
 
-## Not claimed
+## Scope
 
-This repository does not claim universal agent reliability, broad task coverage, commercial demand, product-market fit, or that this small reference implementation is the production MachineOutcome runtime.
+This repository does not claim universal agent reliability, broad task coverage, commercial demand, product-market fit, or that this bounded reference is the production MachineOutcome runtime.

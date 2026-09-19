@@ -4,6 +4,19 @@
 **Status:** Building  
 **Portfolio:** https://sarmadtawfeek.se/
 
+## Five-minute technical review
+
+For the fastest current evaluation path:
+
+1. [Current public evidence snapshot — 2026-09-19](CURRENT_PUBLIC_EVIDENCE.md)
+2. [Observable proof](PROOF.md)
+3. [Sanitized outcome example](examples/sanitized-outcome.json)
+4. [System view](docs/SYSTEM_VIEW.md)
+5. [Verification approach](docs/VERIFICATION.md)
+6. [Public / private boundary](PUBLIC_BOUNDARY.md)
+
+The production implementation remains private. This case study is intended to make the **outcome-verification model, evidence boundaries, failure handling, and current engineering direction** inspectable without publishing the proprietary evaluator/runtime.
+
 ## My role in this build
 
 I researched the product/system problem, chose the direction, defined the high-level blueprint and quality expectations, and used specialist AI personas/agents to drive implementation and iteration.
@@ -29,7 +42,7 @@ Current private-source evidence includes:
 
 That means this repo is not presenting a future reliability score as if it already existed.
 
-**Start with the evidence layer:** [PROOF.md](PROOF.md)
+**Start with the current evidence layer:** [CURRENT_PUBLIC_EVIDENCE.md](CURRENT_PUBLIC_EVIDENCE.md)
 
 ## System boundary
 
@@ -72,6 +85,7 @@ This is implementation context, not a claim that I personally selected or author
 
 ## Inspect the case study
 
+- [Current public evidence snapshot](CURRENT_PUBLIC_EVIDENCE.md)
 - [Observable proof](PROOF.md)
 - [Sanitized outcome example](examples/sanitized-outcome.json)
 - [System view](docs/SYSTEM_VIEW.md)

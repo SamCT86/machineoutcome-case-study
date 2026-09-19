@@ -19,7 +19,7 @@ MachineOutcome is both an AI-related product and an AI-assisted build. My role i
 - integration investigation;
 - technical review and documentation.
 
-I do **not** claim that I independently selected or hand-authored every schema, evaluator mechanism, state transition or code path.
+AI assistance is explicit, but it does not outsource accountability: I review resulting behavior, debug failures, set acceptance gates and decide what is accepted or rejected.
 
 ## Working loop
 

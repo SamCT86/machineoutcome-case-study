@@ -4,7 +4,7 @@
 
 A public, executable engineering reference for one MachineOutcome principle: **do not infer success from an attempted mutation; verify the exact resulting state.** The production system remains private.
 
-## Five-minute technical evaluation
+## Run locally
 
 ```bash
 git clone https://github.com/SamCT86/machineoutcome-case-study.git
@@ -51,11 +51,11 @@ The production MachineOutcome system is materially broader than this sample and 
 
 This repository is a **reference edition**, not a source release of the production runtime.
 
-## How I build
+## Engineering ownership
 
-I use AI agents heavily for implementation, investigation, testing and adversarial review. My ownership is the product problem, evidence doctrine, architecture constraints, acceptance gates, falsifiers and the decision to accept or reject the resulting system.
+AI tools are part of my implementation workflow. I use them to accelerate investigation, implementation, testing and review, while remaining accountable for the system boundary, architecture constraints, code review, debugging, acceptance criteria and the decision to ship or reject a change.
 
-I do not claim to have hand-written every line. The intended engineering signal is the ability to direct AI-native implementation toward explicit state, falsifiable claims, deterministic verification and safe recovery boundaries.
+The useful question here is not who typed each token. It is whether the behavior is explicit, testable, reproducible and safe under failure. The executable tests and design trade-offs in this repository are the public evidence for that claim.
 
 ## Public/private boundary
 

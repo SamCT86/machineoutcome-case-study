@@ -1,0 +1,8 @@
+{
+  "name": "machineoutcome-reference",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "scripts": { "test": "node --test", "verify": "node --test" },
+  "engines": { "node": ">=20" }
+}

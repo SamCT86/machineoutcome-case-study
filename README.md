@@ -1,12 +1,18 @@
-# MachineOutcome — verified outcomes before agent trust
+# MachineOutcome — reconcile reality before retry
 
 [![verify-reference](https://github.com/SamCT86/machineoutcome-case-study/actions/workflows/verify-reference.yml/badge.svg)](https://github.com/SamCT86/machineoutcome-case-study/actions/workflows/verify-reference.yml)
 
-A small executable reference for one MachineOutcome invariant: **an attempted mutation is not a verified outcome.** The resulting provider/system state must be read back before success or retry is trusted. The production system remains private.
+**Engineering signal:** safe agent mutations, observed-state reconciliation, retry boundaries and explicit uncertainty.
 
-**Portfolio:** https://sarmadtawfeek.se
+MachineOutcome starts from a simple failure mode: an API call can time out after the external system already changed. If an agent treats transport ambiguity as failure and retries blindly, it can duplicate writes, deployments, payments or other irreversible actions.
 
-## Run locally
+This public repository makes one reliability invariant executable:
+
+> **An attempted mutation is not a verified outcome. Read back the resulting state before success or retry is trusted.**
+
+The production system remains private. This reference uses synthetic state only.
+
+## Run the failure cases
 
 ```bash
 git clone https://github.com/SamCT86/machineoutcome-case-study.git
@@ -14,15 +20,15 @@ cd machineoutcome-case-study
 npm test
 ```
 
-Key files:
+Primary surfaces:
 
-- `src/reference-outcome-verifier.mjs` — bounded state-verification logic;
-- `test/reference-outcome-verifier.test.mjs` — adversarial retry/readback tests;
-- `fixtures/verified-after-ambiguous-transport.json` — synthetic provider-state example;
-- `PROOF.md` — broader implementation evidence;
-- `PUBLIC_BOUNDARY.md` — public/private boundary.
+- `src/reference-outcome-verifier.mjs` — bounded state-verification logic
+- `test/reference-outcome-verifier.test.mjs` — adversarial retry/readback cases
+- `fixtures/verified-after-ambiguous-transport.json` — synthetic provider-state example
+- `PROOF.md` — broader implementation evidence
+- `PUBLIC_BOUNDARY.md` — public/private boundary
 
-## Verification contract
+## State contract
 
 ```text
 expected pre-state
@@ -32,49 +38,51 @@ expected pre-state
 → retry only when observed state makes retry safe
 ```
 
-The reference demonstrates that:
+The executable reference covers six important cases:
 
-- stale pre-state blocks mutation authority;
-- incomplete readback preserves `UNKNOWN`;
-- ambiguous transport is not automatically a failure;
-- exact post-state can verify an ambiguously acknowledged mutation;
-- ambiguous state blocks blind retry;
-- complete but incorrect post-state is `FAILED`.
+1. stale pre-state blocks mutation authority;
+2. incomplete readback preserves `UNKNOWN`;
+3. ambiguous transport is not automatically failure;
+4. exact post-state can verify an ambiguously acknowledged mutation;
+5. ambiguous state blocks blind retry;
+6. complete but incorrect post-state is `FAILED`.
 
-Observed state outranks transport optimism.
+The governing principle is deliberate: **observed state outranks transport optimism.**
 
-## Why this matters
+## What this demonstrates
 
-Agent systems become dangerous when an unclear response becomes “retry it” without reconciling what actually happened. Duplicate repository writes, deployments, payments, migrations or other external actions can be worse than an explicit failure.
+This is a small reference, not a framework claim. It demonstrates the engineering pattern I use when agentic systems cross a mutation boundary:
 
-## Production boundary
+- bind the state the action is allowed to start from;
+- separate attempt status from outcome status;
+- reconcile ambiguous external effects;
+- preserve an explicit unknown state;
+- refuse unsafe replay when reality is not yet known.
 
-The private MachineOutcome implementation is materially broader: task/attempt/evidence identity, provenance, append-oriented history, recovery, reliability and delegation/routing work. That implementation is not published here.
+That pattern is relevant to repository automation, deployment systems, payments, migrations and other external side effects.
 
-Public here:
+## Private implementation boundary
 
-- bounded state-verification logic;
-- synthetic states;
-- executable tests and CI;
-- non-proprietary system/evidence documentation.
+The private MachineOutcome system is materially broader and includes task/attempt/evidence identity, provenance, append-oriented history, recovery, reliability work and delegation/routing controls.
 
-Private:
+Not published here:
 
-- production providers and credentials;
-- internal repository IDs, incident details and operator authority;
-- production schemas, storage and recovery implementation;
-- proprietary evaluator/runtime logic;
-- unreleased reliability, delegation and routing systems.
+- production provider credentials or customer data;
+- internal repository IDs and incident details;
+- production persistence / recovery implementation;
+- proprietary evaluator and routing logic;
+- unreleased reliability or delegation systems.
 
-## Engineering process
+## Engineering accountability
 
-AI tools are part of the implementation workflow. I remain accountable for system boundaries, architecture constraints, code review, debugging, acceptance criteria, tests and release decisions.
+AI tools are part of my implementation workflow. I remain accountable for problem framing, system boundaries, architecture constraints, debugging, acceptance criteria, tests and release decisions.
 
-## Related references
+## Related engineering proof
 
+- [Agent Forecast Foundry](https://github.com/SamCT86/agent-cashflow-os-case-study) — bounded post-model verification, input binding, abstention and cost/latency guards.
 - [Billable Meetings](https://github.com/SamCT86/billable-meetings-os-case-study) — deterministic contract + evidence → billability.
 - [ReleaseProof](https://github.com/SamCT86/releaseproof-case-study) — exact-artifact identity and evidence integrity.
-- [PriceBriefs](https://github.com/SamCT86/pricebriefs-case-study) — evidence refusal before commercial action.
+- [PriceBriefs](https://github.com/SamCT86/pricebriefs-case-study) — evidence eligibility before commercial action.
 
 ## Scope
 

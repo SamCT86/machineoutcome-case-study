@@ -79,7 +79,7 @@ AI tools are part of my implementation workflow. I remain accountable for proble
 
 ## Related engineering proof
 
-- [Agent Forecast Foundry](https://github.com/SamCT86/agent-cashflow-os-case-study) — bounded post-model verification, input binding, abstention and cost/latency guards.
+- [Agent Forecast Foundry](https://github.com/SamCT86/agent-forecast-foundry-case-study) — bounded post-model verification, input binding, abstention and cost/latency guards.
 - [Billable Meetings](https://github.com/SamCT86/billable-meetings-os-case-study) — deterministic contract + evidence → billability.
 - [ReleaseProof](https://github.com/SamCT86/releaseproof-case-study) — exact-artifact identity and evidence integrity.
 - [PriceBriefs](https://github.com/SamCT86/pricebriefs-case-study) — evidence eligibility before commercial action.

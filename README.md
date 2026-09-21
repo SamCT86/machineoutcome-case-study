@@ -21,21 +21,26 @@ npm test
 ## How it works
 
 ```text
-expected starting state
+task + attempt identity
+-> expected starting state
 -> mutation attempt
--> provider/system readback
+-> provider/system readback bound to the same task + attempt
 -> VERIFIED | FAILED | UNKNOWN
 -> retry only when the observed state makes retry safe
 ```
 
-The reference covers six cases:
+The reference covers the core state cases plus adversarial identity/contract checks:
 
 1. stale starting state blocks the action;
 2. incomplete readback stays `UNKNOWN`;
 3. ambiguous transport is not automatically treated as failure;
 4. an exact post-state can verify an action even when its acknowledgement was ambiguous;
 5. ambiguous state blocks blind retry;
-6. a complete but incorrect post-state becomes `FAILED`.
+6. a complete but incorrect post-state becomes `FAILED`;
+7. evidence from the wrong attempt fails closed even if the post-state matches;
+8. evidence from the wrong task fails closed even if the post-state matches;
+9. missing expected/observed post-state cannot collapse into a false `VERIFIED`;
+10. non-boolean readback completeness cannot masquerade as verified evidence.
 
 The rule behind all of them is simple: **observed state matters more than transport optimism.**
 
@@ -51,6 +56,7 @@ The rule behind all of them is simple: **observed state matters more than transp
 
 This is intentionally a small reference, not a claim to be a complete agent framework. It shows the pattern I use when software crosses an external mutation boundary:
 
+- bind evidence to the task and attempt it is supposed to prove;
 - bind the state an action is allowed to start from;
 - separate attempt status from outcome status;
 - read back external state when the result is ambiguous;

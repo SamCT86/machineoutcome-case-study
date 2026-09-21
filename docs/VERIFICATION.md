@@ -8,10 +8,10 @@ MachineOutcome is built around a sequence: **task → attempt → evidence → o
 The system needs a sufficiently explicit description of the work being evaluated.
 
 ### 2. Attempt identity
-The outcome must belong to the correct agent attempt rather than a nearby run or unrelated state.
+The outcome must belong to the correct agent attempt rather than a nearby run or unrelated state. The public executable reference now fails closed when readback evidence carries a different task or attempt identity, even if the observed post-state otherwise matches.
 
 ### 3. Evidence
-The evaluator should use inspectable evidence about the downstream result rather than relying only on the agent’s own success claim.
+The evaluator should use inspectable evidence about the downstream result rather than relying only on the agent’s own success claim. Readback completeness is a strict boolean contract in the public reference; malformed truthy values do not count as complete evidence.
 
 ### 4. Outcome state
 The result must preserve uncertainty when the evidence cannot support a stronger conclusion.

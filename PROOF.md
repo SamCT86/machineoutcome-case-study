@@ -54,7 +54,7 @@ The example is synthetic/redacted. It shows the public semantics only: task iden
 | Area | Public evidence state |
 |---|---|
 | Concrete repository-change task class | Established in canonical implementation |
-| Task / attempt / evidence / outcome separation | Core current design |
+| Task / attempt / evidence / outcome separation | Core current design; public verifier now binds evidence task + attempt identity |
 | Agent Change Outcome Guard | First operational utility in current implementation direction |
 | Structured control/evidence records | Present in private repository |
 | Append-oriented correction semantics | Explicit truth lock |

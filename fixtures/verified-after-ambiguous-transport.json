@@ -1,4 +1,8 @@
 {
+  "taskId": "task:repo-change-001",
+  "evidenceTaskId": "task:repo-change-001",
+  "attemptId": "attempt:001",
+  "evidenceAttemptId": "attempt:001",
   "expectedPreState": "sha:pre",
   "expectedPostState": "sha:post",
   "observedPreState": "sha:pre",

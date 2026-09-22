@@ -77,17 +77,12 @@ Not published here:
 - proprietary evaluator and routing logic;
 - unreleased reliability or delegation systems.
 
-## Related work
+## What I am claiming here
 
-- [Agent Forecast Foundry](https://github.com/SamCT86/agent-forecast-foundry-case-study) - verify AI-agent runs after the model responds.
-- [Billable Meetings](https://github.com/SamCT86/billable-meetings-os-case-study) - turn meeting evidence into deterministic billing decisions.
-- [ReleaseProof](https://github.com/SamCT86/releaseproof-case-study) - bind release evidence to the exact artifact being shipped.
-- [PriceBriefs](https://github.com/SamCT86/pricebriefs-case-study) - validate market evidence before commercial action.
+The claim is deliberately narrow: when a mutation has an ambiguous outcome, the transport result alone is not enough to decide whether success or retry is safe. The code and tests in this repository are meant to make that boundary reviewable.
 
-## Engineering accountability
+I am **not** claiming universal agent reliability, broad task coverage, commercial demand, or that this public slice is the production MachineOutcome runtime.
 
-I use AI tools as part of my implementation workflow. I remain responsible for the system boundaries, architecture, debugging, acceptance criteria, tests, and release decisions.
+I use AI tools during implementation, but the system boundary, failure cases, tests, debugging, and release decision are mine to own.
 
-## Scope
-
-This repository does not claim universal agent reliability, broad task coverage, commercial demand, product-market fit, or that this public reference is the production MachineOutcome runtime.
+For the broader Applied AI work, start with [Agent Forecast Foundry](https://github.com/SamCT86/agent-forecast-foundry-case-study).

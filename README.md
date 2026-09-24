@@ -6,7 +6,7 @@
 
 MachineOutcome is about a simple but important failure mode in automation: an API call can time out even though the external system already changed.
 
-If an agent treats that timeout as a clean failure and retries immediately, it can create duplicate writes, deployments, payments, or other side effects. I built this public reference to make the safer pattern executable and easy to inspect.
+I use this public reference to make the safer pattern executable and easy to inspect: if an agent treats a timeout as a clean failure and retries immediately, it can create duplicate writes, deployments, payments, or other side effects.
 
 > **An attempted action is not the same as a verified outcome. Read back the real state before success or retry is trusted.**
 
@@ -85,6 +85,6 @@ The claim is deliberately narrow: when a mutation has an ambiguous outcome, the 
 
 I am **not** claiming universal agent reliability, broad task coverage, commercial demand, or that this public slice is the production MachineOutcome runtime.
 
-I use AI tools during implementation, but the system boundary, failure cases, tests, debugging, and release decision are mine to own.
+This reference is AI-assisted. My role is to define the problem and system boundary, direct the implementation, set acceptance criteria, test the failure cases, verify the behavior and make the final release decision. It is not a claim that I manually wrote every line.
 
 For the broader portfolio and how these public references fit together, see [my GitHub profile](https://github.com/SamCT86) or [sarmadtawfeek.se](https://sarmadtawfeek.se).

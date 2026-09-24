@@ -2,6 +2,8 @@
 
 [![verify-reference](https://github.com/SamCT86/machineoutcome-case-study/actions/workflows/verify-reference.yml/badge.svg)](https://github.com/SamCT86/machineoutcome-case-study/actions/workflows/verify-reference.yml)
 
+**Portfolio:** https://sarmadtawfeek.se
+
 MachineOutcome is about a simple but important failure mode in automation: an API call can time out even though the external system already changed.
 
 If an agent treats that timeout as a clean failure and retries immediately, it can create duplicate writes, deployments, payments, or other side effects. I built this public reference to make the safer pattern executable and easy to inspect.
@@ -85,4 +87,4 @@ I am **not** claiming universal agent reliability, broad task coverage, commerci
 
 I use AI tools during implementation, but the system boundary, failure cases, tests, debugging, and release decision are mine to own.
 
-For the broader Applied AI work, start with [Agent Forecast Foundry](https://github.com/SamCT86/agent-forecast-foundry-case-study).
+For the broader portfolio and how these public references fit together, see [my GitHub profile](https://github.com/SamCT86) or [sarmadtawfeek.se](https://sarmadtawfeek.se).

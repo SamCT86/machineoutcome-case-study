@@ -2,8 +2,6 @@
 
 [![verify-reference](https://github.com/SamCT86/machineoutcome-case-study/actions/workflows/verify-reference.yml/badge.svg)](https://github.com/SamCT86/machineoutcome-case-study/actions/workflows/verify-reference.yml)
 
-**Portfolio:** https://sarmadtawfeek.se
-
 MachineOutcome is about a simple but important failure mode in automation: an API call can time out even though the external system already changed.
 
 I use this public reference to make the safer pattern executable and easy to inspect: if an agent treats a timeout as a clean failure and retries immediately, it can create duplicate writes, deployments, payments, or other side effects.
@@ -87,4 +85,4 @@ I am **not** claiming universal agent reliability, broad task coverage, commerci
 
 This reference is AI-assisted. My role is to define the problem and system boundary, direct the implementation, set acceptance criteria, test the failure cases, verify the behavior and make the final release decision. It is not a claim that I manually wrote every line.
 
-For the current public product focus, see [my GitHub profile](https://github.com/SamCT86) or [sarmadtawfeek.se](https://sarmadtawfeek.se).
+For the current public product focus, see [my GitHub profile](https://github.com/SamCT86).

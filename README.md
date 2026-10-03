@@ -22,7 +22,7 @@ The concrete pattern demonstrated here is:
 4. keep `UNKNOWN` when reality is not yet established;
 5. retry only when the observed state makes retry safe.
 
-If you are evaluating whether this approach fits a real AI/automation workflow, inspect the tests first and then use the [portfolio](https://sarmadtawfeek.se) or [email](mailto:sarmadtawfeek@gmail.com) for a concrete technical discussion. This public reference is engineering evidence, not a claim of customer adoption or ROI.
+If you are evaluating whether this approach fits a real AI/automation workflow, inspect the tests first and then use the [portfolio](https://www.sarmadtawfeek.com) or [email](mailto:sarmadtawfeek@gmail.com) for a concrete technical discussion. This public reference is engineering evidence, not a claim of customer adoption or ROI.
 
 ## Commercial entry point
 
@@ -32,7 +32,7 @@ If the root problem is already clear, a **Fix sprint** is the smaller implementa
 
 Start with **2–3 sentences** describing what is slow, expensive or unreliable. No technical brief or meeting is required to start, and no sensitive data should be sent yet. Scope and price are agreed before anything is ordered.
 
-[Describe the workflow by email](mailto:sarmadtawfeek@gmail.com) · [See the current engagement options](https://sarmadtawfeek.se)
+[Describe the workflow by email](mailto:sarmadtawfeek@gmail.com) · [See the current engagement options](https://www.sarmadtawfeek.com)
 
 ## Try it
 
@@ -109,4 +109,4 @@ I am **not** claiming universal agent reliability, broad task coverage, commerci
 
 This reference is AI-assisted. My role is to define the problem and system boundary, direct the implementation, set acceptance criteria, test the failure cases, verify the behavior and make the final release decision. It is not a claim that I manually wrote every line.
 
-For the current public product focus, see [my portfolio](https://sarmadtawfeek.se) and [GitHub profile](https://github.com/SamCT86).
+For the current public product focus, see [my portfolio](https://www.sarmadtawfeek.com) and [GitHub profile](https://github.com/SamCT86).

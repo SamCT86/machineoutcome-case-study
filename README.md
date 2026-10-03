@@ -10,6 +10,20 @@ I use this public reference to make the safer pattern executable and easy to ins
 
 The production system remains private. This repository uses synthetic state only.
 
+## Why a buyer or CTO should care
+
+This is a small reliability proof for systems that let software agents or automation mutate something outside themselves. When a mutation can succeed before its acknowledgement returns, a blind retry can duplicate a payment, deployment, write, job, message or other side effect.
+
+The concrete pattern demonstrated here is:
+
+1. know the state the action was allowed to start from;
+2. bind evidence to the exact task + attempt;
+3. read the external state after an ambiguous result;
+4. keep `UNKNOWN` when reality is not yet established;
+5. retry only when the observed state makes retry safe.
+
+If you are evaluating whether this approach fits a real AI/automation workflow, inspect the tests first and then use the [portfolio](https://sarmadtawfeek.se) or [email](mailto:sarmadtawfeek@gmail.com) for a concrete technical discussion. This public reference is engineering evidence, not a claim of customer adoption or ROI.
+
 ## Try it
 
 ```bash

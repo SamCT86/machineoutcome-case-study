@@ -12,7 +12,7 @@ The production system remains private. This repository uses synthetic state only
 
 ## Why a buyer or CTO should care
 
-This is a small reliability proof for systems that let software agents or automation mutate something outside themselves. The risk is not theoretical: when transport acknowledgement is ambiguous, a blind retry can duplicate a payment, deployment, write, job, message or other side effect.
+This is a small reliability proof for systems that let software agents or automation mutate something outside themselves. When a mutation can succeed before its acknowledgement returns, a blind retry can duplicate a payment, deployment, write, job, message or other side effect.
 
 The concrete pattern demonstrated here is:
 

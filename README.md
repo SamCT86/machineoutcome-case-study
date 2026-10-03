@@ -85,4 +85,4 @@ I am **not** claiming universal agent reliability, broad task coverage, commerci
 
 This reference is AI-assisted. My role is to define the problem and system boundary, direct the implementation, set acceptance criteria, test the failure cases, verify the behavior and make the final release decision. It is not a claim that I manually wrote every line.
 
-For the current public product focus, see [my GitHub profile](https://github.com/SamCT86).
+For the current public product focus, see [my portfolio](https://sarmadtawfeek.se) and [GitHub profile](https://github.com/SamCT86).

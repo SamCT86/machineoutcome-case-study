@@ -24,6 +24,16 @@ The concrete pattern demonstrated here is:
 
 If you are evaluating whether this approach fits a real AI/automation workflow, inspect the tests first and then use the [portfolio](https://sarmadtawfeek.se) or [email](mailto:sarmadtawfeek@gmail.com) for a concrete technical discussion. This public reference is engineering evidence, not a claim of customer adoption or ROI.
 
+## Commercial entry point
+
+If this failure mode exists in a real workflow, the closest current engagement is a **Reliability review**: failure, duplicate-action and handoff testing plus a prioritized action list.
+
+If the root problem is already clear, a **Fix sprint** is the smaller implementation path: one bounded change against a pre-agreed metric, followed by outcome verification.
+
+Start with **2–3 sentences** describing what is slow, expensive or unreliable. No technical brief or meeting is required to start, and no sensitive data should be sent yet. Scope and price are agreed before anything is ordered.
+
+[Describe the workflow by email](mailto:sarmadtawfeek@gmail.com) · [See the current engagement options](https://sarmadtawfeek.se)
+
 ## Try it
 
 ```bash

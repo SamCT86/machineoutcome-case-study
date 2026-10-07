@@ -98,6 +98,12 @@ function evaluate(controls) {
   try { const input = toVerifierInput(controls); const out = verifyMutationOutcome(input); renderResult(input, out); return out; }
   catch (error) { validation.textContent = `VERIFIER_REFUSED_INPUT: ${error instanceof Error ? error.message : String(error)}`; result.innerHTML = `<div class="empty-state"><p class="eyebrow">FAIL CLOSED</p><h3>Invalid evidence contract.</h3><p>The public verifier rejected the input instead of guessing.</p></div>`; return null; }
 }
+form.addEventListener("change", (event) => {
+  if (!(event.target instanceof HTMLSelectElement)) return;
+  selected = "custom";
+  renderPresets();
+  evaluate(readControls());
+});
 form.addEventListener("submit", (event) => { event.preventDefault(); selected = "custom"; renderPresets(); evaluate(readControls()); });
 resetButton.addEventListener("click", () => { selected = "ambiguousVerified"; setControls(SCENARIOS.ambiguousVerified.controls); renderPresets(); validation.textContent = ""; result.innerHTML = `<div class="empty-state"><p class="eyebrow">READY</p><h3>Run an ambiguous action.</h3><p>You will get an outcome status, reason, safe retry decision, evidence trace and the exact verifier input/output.</p></div>`; });
 guidedButton.addEventListener("click", () => { selected = "ambiguousVerified"; setControls(SCENARIOS.ambiguousVerified.controls); renderPresets(); evaluate(SCENARIOS.ambiguousVerified.controls); document.querySelector("#lab").scrollIntoView({ behavior: "smooth", block: "start" }); });

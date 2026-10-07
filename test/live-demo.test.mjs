@@ -21,6 +21,10 @@ test("preset selection immediately evaluates the selected scenario so stale resu
   assert.match(app, /button\.addEventListener\("click",[\s\S]*evaluate\(scenario\.controls\)/);
 });
 
+test("manual select changes immediately reevaluate current controls so visible outcomes never stay stale", () => {
+  assert.match(app, /form\.addEventListener\("change",[\s\S]*HTMLSelectElement[\s\S]*evaluate\(readControls\(\)\)/);
+});
+
 test("guided ambiguous-success scenario is VERIFIED by the canonical verifier", () => {
   assert.deepEqual(verifyMutationOutcome({ taskId:"task:repo-change-001", evidenceTaskId:"task:repo-change-001", attemptId:"attempt:001", evidenceAttemptId:"attempt:001", expectedPreState:"repo@before", expectedPostState:"repo@after", observedPreState:"repo@before", observedPostState:"repo@after", readbackComplete:true, providerAcknowledgement:"ambiguous" }), { status:"VERIFIED", reason:"POSTSTATE_CONFIRMED", retry:"DO_NOT_RETRY" });
 });

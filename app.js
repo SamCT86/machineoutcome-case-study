@@ -55,7 +55,7 @@ function renderPresets() {
     button.dataset.scenario = key;
     button.setAttribute("aria-pressed", String(key === selected));
     button.innerHTML = `<b>${escapeHtml(scenario.title)}</b><span>${escapeHtml(scenario.hint)}</span>`;
-    button.addEventListener("click", () => { selected = key; setControls(scenario.controls); validation.textContent = ""; renderPresets(); });
+    button.addEventListener("click", () => { selected = key; setControls(scenario.controls); validation.textContent = ""; renderPresets(); evaluate(scenario.controls); });
     presets.append(button);
   }
 }

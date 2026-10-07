@@ -17,6 +17,10 @@ test("browser demo imports canonical verifier and contains no network primitive"
   for (const primitive of [/\bfetch\s*\(/, /\bXMLHttpRequest\b/, /\bWebSocket\b/, /\bnavigator\.sendBeacon\b/]) assert.doesNotMatch(app, primitive);
 });
 
+test("preset selection immediately evaluates the selected scenario so stale results cannot remain visible", () => {
+  assert.match(app, /button\.addEventListener\("click",[\s\S]*evaluate\(scenario\.controls\)/);
+});
+
 test("guided ambiguous-success scenario is VERIFIED by the canonical verifier", () => {
   assert.deepEqual(verifyMutationOutcome({ taskId:"task:repo-change-001", evidenceTaskId:"task:repo-change-001", attemptId:"attempt:001", evidenceAttemptId:"attempt:001", expectedPreState:"repo@before", expectedPostState:"repo@after", observedPreState:"repo@before", observedPostState:"repo@after", readbackComplete:true, providerAcknowledgement:"ambiguous" }), { status:"VERIFIED", reason:"POSTSTATE_CONFIRMED", retry:"DO_NOT_RETRY" });
 });

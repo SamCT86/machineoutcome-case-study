@@ -1,8 +1,8 @@
 # MachineOutcome - verify what actually happened before retrying
 
-[**Browser lab for this release →**](https://samct86.github.io/machineoutcome-case-study/)
+[**Try the live 30-second Outcome Verification Lab →**](https://samct86.github.io/machineoutcome-case-study/)
 
-After the Pages deployment for this release completes, no install, account, credential or real external write is required. The browser lab uses the same bounded verifier exported by this repository and runs entirely on synthetic state.
+No install, account, credential or real external write is required. The live browser lab uses the same bounded verifier exported by this repository and runs entirely on synthetic state.
 
 [![verify-reference](https://github.com/SamCT86/machineoutcome-case-study/actions/workflows/verify-reference.yml/badge.svg)](https://github.com/SamCT86/machineoutcome-case-study/actions/workflows/verify-reference.yml)
 
@@ -40,7 +40,7 @@ Start with **2–3 sentences** describing what is slow, expensive or unreliable.
 
 ## Try it
 
-**Fastest path after the Pages deployment completes:** open the [browser lab](https://samct86.github.io/machineoutcome-case-study/) and run **Timeout, but change happened**. Then switch to **No readback** and **Wrong-attempt evidence** to see the safe action change.
+**Fastest path:** open the [live browser lab](https://samct86.github.io/machineoutcome-case-study/) and run **Timeout, but change happened**. Then switch to **No readback** and **Wrong-attempt evidence** to see the safe action change.
 
 **Technical verification from a clean clone:**
 

@@ -1,42 +1,23 @@
-# MachineOutcome - verify what actually happened before retrying
+# MachineOutcome
 
-[**Try the live 30-second Outcome Verification Lab →**](https://samct86.github.io/machineoutcome-case-study/)
+An automation can time out even though the job is already done. If it tries again without checking, you can end up with two payments, two messages or two deployments.
 
-No install, account, credential or real external write is required. The live browser lab uses the same bounded verifier exported by this repository and runs entirely on synthetic state.
+I'm building MachineOutcome to help with that problem: check what happened before deciding what to do next.
 
-[![verify-reference](https://github.com/SamCT86/machineoutcome-case-study/actions/workflows/verify-reference.yml/badge.svg)](https://github.com/SamCT86/machineoutcome-case-study/actions/workflows/verify-reference.yml)
+[**Try the demo**](https://samct86.github.io/machineoutcome-case-study/)
 
-MachineOutcome is about a simple but important failure mode in automation: an API call can time out even though the external system already changed.
+Try the timeout example, then see what changes when the system can’t check whether the job was done.
 
-I use this public reference to make the safer pattern executable and easy to inspect: if an agent treats a timeout as a clean failure and retries immediately, it can create duplicate writes, deployments, payments, or other side effects.
+The demo runs in your browser with made-up data. No account, credentials or real-world action is involved. This is a small public example; I keep the full system private.
 
-> **An attempted action is not the same as a verified outcome. Read back the real state before success or retry is trusted.**
+## Have this problem in a real workflow?
 
-The production system remains private. This repository uses synthetic state only.
+[Email me a few sentences](mailto:sarmadtawfeek@gmail.com) about what goes wrong. We can start with a reliability review or one focused fix. We'll agree on scope and price before starting. Please leave out sensitive data.
 
-## Why a buyer or CTO should care
+[Portfolio](https://www.sarmadtawfeek.com) · [GitHub profile](https://github.com/SamCT86)
 
-This is a small reliability proof for systems that let software agents or automation mutate something outside themselves. When a mutation can succeed before its acknowledgement returns, a blind retry can duplicate a payment, deployment, write, job, message or other side effect.
-
-The concrete pattern demonstrated here is:
-
-1. know the state the action was allowed to start from;
-2. bind evidence to the exact task + attempt;
-3. read the external state after an ambiguous result;
-4. keep `UNKNOWN` when reality is not yet established;
-5. retry only when the observed state makes retry safe.
-
-If you are evaluating whether this approach fits a real AI/automation workflow, inspect the tests first and then use the [portfolio](https://www.sarmadtawfeek.com) or [email](mailto:sarmadtawfeek@gmail.com) for a concrete technical discussion. This public reference is engineering evidence, not a claim of customer adoption or ROI.
-
-## Commercial entry point
-
-If this failure mode exists in a real workflow, the closest current engagement is a **Reliability review**: failure, duplicate-action and handoff testing plus a prioritized action list.
-
-If the root problem is already clear, a **Fix sprint** is the smaller implementation path: one bounded change against a pre-agreed metric, followed by outcome verification.
-
-Start with **2–3 sentences** describing what is slow, expensive or unreliable. No technical brief or meeting is required to start, and no sensitive data should be sent yet. Scope and price are agreed before anything is ordered.
-
-[Describe the workflow by email](mailto:sarmadtawfeek@gmail.com) · [See the current engagement options](https://www.sarmadtawfeek.com)
+<details>
+<summary>Code, tests and technical details</summary>
 
 ## Try it
 
@@ -118,3 +99,4 @@ I am **not** claiming universal agent reliability, broad task coverage, commerci
 This reference is AI-assisted. My role is to define the problem and system boundary, direct the implementation, set acceptance criteria, test the failure cases, verify the behavior and make the final release decision. It is not a claim that I manually wrote every line.
 
 For the current public product focus, see [my portfolio](https://www.sarmadtawfeek.com) and [GitHub profile](https://github.com/SamCT86).
+</details>

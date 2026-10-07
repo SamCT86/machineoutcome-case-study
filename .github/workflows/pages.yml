@@ -33,11 +33,12 @@ jobs:
           set -euo pipefail
           mkdir -p _site/src
           cp index.html app.js styles.css _site/
-          cp src/reference-outcome-verifier.mjs _site/src/
+          cp src/reference-outcome-verifier.mjs src/demo-model.mjs _site/src/
           test -s _site/index.html
           test -s _site/app.js
           test -s _site/styles.css
           test -s _site/src/reference-outcome-verifier.mjs
+          test -s _site/src/demo-model.mjs
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b

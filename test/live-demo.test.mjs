@@ -5,11 +5,14 @@ import { verifyMutationOutcome } from "../src/reference-outcome-verifier.mjs";
 
 const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
 const app = await readFile(new URL("../app.js", import.meta.url), "utf8");
+const model = await readFile(new URL("../src/demo-model.mjs", import.meta.url), "utf8");
 const css = await readFile(new URL("../styles.css", import.meta.url), "utf8");
 
 test("live demo has one primary heading, lab controls and local assets", () => {
   assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
-  for (const token of ['id="lab"','id="lab-form"','data-run-guided','name="ack"','name="prestate"','name="readback"','name="poststate"','name="identity"','src="./app.js"','href="./styles.css"']) assert.match(html, new RegExp(token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  for (const token of ['id="lab"','id="lab-form"','data-run-guided','name="ack"','name="prestate"','name="readback"','name="poststate"','name="identity"','src="./app.js"','href="./styles.css"']) {
+    assert.ok(html.includes(token), token);
+  }
 });
 
 test("browser demo imports canonical verifier and contains no network primitive", () => {
@@ -26,11 +29,22 @@ test("manual select changes immediately reevaluate current controls so visible o
 });
 
 test("guided ambiguous-success scenario is VERIFIED by the canonical verifier", () => {
-  assert.deepEqual(verifyMutationOutcome({ taskId:"task:repo-change-001", evidenceTaskId:"task:repo-change-001", attemptId:"attempt:001", evidenceAttemptId:"attempt:001", expectedPreState:"repo@before", expectedPostState:"repo@after", observedPreState:"repo@before", observedPostState:"repo@after", readbackComplete:true, providerAcknowledgement:"ambiguous" }), { status:"VERIFIED", reason:"POSTSTATE_CONFIRMED", retry:"DO_NOT_RETRY" });
+  assert.deepEqual(verifyMutationOutcome({
+    taskId:"task:repo-change-001",
+    evidenceTaskId:"task:repo-change-001",
+    attemptId:"attempt:001",
+    evidenceAttemptId:"attempt:001",
+    expectedPreState:"repo@before",
+    expectedPostState:"repo@after",
+    observedPreState:"repo@before",
+    observedPostState:"repo@after",
+    readbackComplete:true,
+    providerAcknowledgement:"ambiguous",
+  }), { status:"VERIFIED", reason:"POSTSTATE_CONFIRMED", retry:"DO_NOT_RETRY" });
 });
 
 test("demo exposes failure presets and explicit proof boundaries", () => {
-  for (const phrase of ["Timeout, but change happened","No readback","Timeout, state unchanged","Stale starting state","Wrong-attempt evidence","Unexpected post-state"]) assert.match(app, new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  for (const phrase of ["Timeout, but change happened","No readback","Timeout, state unchanged","Stale starting state","Wrong-attempt evidence","Unexpected post-state"]) assert.ok(model.includes(phrase), phrase);
   assert.match(html, /not the private MachineOutcome runtime/i);
   assert.match(html, /no credentials/i);
   assert.match(html, /no network calls/i);

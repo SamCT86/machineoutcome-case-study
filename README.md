@@ -1,29 +1,34 @@
 # MachineOutcome
 
-An automation can time out even though the job is already done. If it tries again without checking, you can end up with two payments, two messages or two deployments.
+**Check what happened before you retry.**
 
-I'm building MachineOutcome to help with that problem: check what happened before deciding what to do next.
+Software can time out even when an action succeeded. Retrying blindly may create duplicate messages, payments or deployments. MachineOutcome's public reference shows an alternative: check the state that actually exists, bind evidence to the exact task and attempt, and preserve **UNKNOWN** when the outcome cannot be established.
 
-[**Try the demo**](https://samct86.github.io/machineoutcome-case-study/)
+**[Try the browser demo](https://samct86.github.io/machineoutcome-case-study/)** · [Inspect the public reference code](https://github.com/SamCT86/machineoutcome-case-study)
 
-Try the timeout example, then see what changes when the system can’t check whether the job was done.
+## What this is
 
-The demo runs in your browser with made-up data. No account, credentials or real-world action is involved. This is a small public example; I keep the full system private.
+A runnable **public engineering reference**, with synthetic data, small verifier code and adversarial tests. No real payments, customer records, provider credentials or production transactions are involved.
 
-## Have this problem in a real workflow?
+**Not a commercial product or paid service offering.** MachineOutcome is not being offered here for sale, and there are no paid engagements offered through this repository.
 
-[Email me a few sentences](mailto:sarmadtawfeek@gmail.com) about what goes wrong. We can start with a reliability review or one focused fix. We'll agree on scope and price before starting. Please leave out sensitive data.
+**Open-source direction, licensing not yet released:** the public reference currently has no open-source license. That means public visibility and the ability to view/fork on GitHub are not a general commercial reuse grant. An explicit license will be considered only after copyright, dependency and private-source boundaries are reviewed. The full private runtime is not distributed here.
 
-[Portfolio](https://www.sarmadtawfeek.com) · [GitHub profile](https://github.com/SamCT86)
+## The failure this reference demonstrates
 
-<details>
-<summary>Code, tests and technical details</summary>
+```text
+A system starts a task
+  → the external action may succeed
+  → the transport request times out
+  → the system cannot assume "failed"
+  → read back provider state for the same task and attempt
+  → VERIFIED | FAILED | UNKNOWN
+  → retry only when the observed state makes it safe
+```
 
-## Try it
+Try **Timeout, but change happened**, then compare **No readback** and **Wrong-attempt evidence** in the [interactive demo](https://samct86.github.io/machineoutcome-case-study/).
 
-**Fastest path:** open the [live browser lab](https://samct86.github.io/machineoutcome-case-study/) and run **Timeout, but change happened**. Then switch to **No readback** and **Wrong-attempt evidence** to see the safe action change.
-
-**Technical verification from a clean clone:**
+## Run the reference locally
 
 ```bash
 git clone https://github.com/SamCT86/machineoutcome-case-study.git
@@ -31,72 +36,37 @@ cd machineoutcome-case-study
 npm test
 ```
 
-## How it works
-
-```text
-task + attempt identity
--> expected starting state
--> mutation attempt
--> provider/system readback bound to the same task + attempt
--> VERIFIED | FAILED | UNKNOWN
--> retry only when the observed state makes retry safe
-```
-
-The reference covers the core state cases plus adversarial identity/contract checks:
-
-1. stale starting state blocks the action;
-2. incomplete readback stays `UNKNOWN`;
-3. ambiguous transport is not automatically treated as failure;
-4. an exact post-state can verify an action even when its acknowledgement was ambiguous;
-5. ambiguous state blocks blind retry;
-6. a complete but incorrect post-state becomes `FAILED`;
-7. evidence from the wrong attempt fails closed even if the post-state matches;
-8. evidence from the wrong task fails closed even if the post-state matches;
-9. missing expected/observed post-state cannot collapse into a false `VERIFIED`;
-10. non-boolean readback completeness cannot masquerade as verified evidence.
-
-The rule behind all of them is simple: **observed state matters more than transport optimism.**
+The tests cover normal and adversarial readback cases, including stale starting state, ambiguous transport, incomplete evidence, incorrect post-state, and mismatched task/attempt identifiers. These are tests of **this reference**, not evidence of generalized production readiness.
 
 ## What to inspect
 
-- `src/reference-outcome-verifier.mjs` - the state-verification logic.
-- `test/reference-outcome-verifier.test.mjs` - retry and readback failure cases.
-- `fixtures/verified-after-ambiguous-transport.json` - synthetic provider-state example.
-- `PROOF.md` - broader implementation evidence.
-- `PUBLIC_BOUNDARY.md` - what is public and what stays private.
+- `src/reference-outcome-verifier.mjs` — bounded state-verification logic.
+- `test/reference-outcome-verifier.test.mjs` — modeled retry and readback failures.
+- `fixtures/verified-after-ambiguous-transport.json` — synthetic provider-state example.
+- [`PROOF.md`](PROOF.md) — reproducible test and implementation evidence.
+- [`PUBLIC_BOUNDARY.md`](PUBLIC_BOUNDARY.md) — public/private source boundary.
 
-## What this demonstrates
+This is an engineering pattern, not a complete platform: **observed state matters more than transport optimism.**
 
-This is intentionally a small reference, not a claim to be a complete agent framework. It shows the pattern I use when software crosses an external mutation boundary:
+## Public/private boundary
 
-- bind evidence to the task and attempt it is supposed to prove;
-- bind the state an action is allowed to start from;
-- separate attempt status from outcome status;
-- read back external state when the result is ambiguous;
-- keep an explicit unknown state instead of inventing certainty;
-- refuse unsafe replay when reality is not yet known.
+**Public:** reference state machine, demo, synthetic examples, tests and scoped claims.
 
-The same pattern is useful for repository automation, deployment systems, payments, migrations, and other external side effects.
+**Not published:** private production source, provider credentials, real events, customer data, internal policy, recovery, routing and delegation systems. A public demo does not imply a deployment of the private MachineOutcome runtime.
 
-## Public and private boundary
+## What is and is not proven
 
-The private MachineOutcome system goes further with task and attempt identity, evidence, append-oriented history, recovery, reliability controls, and delegation/routing.
+| Demonstrated here | Not established here |
+| --- | --- |
+| Synthetic failure behavior and reference tests | Production reliability across providers |
+| Task/attempt-bound proof concept | Independent commercial adoption or retention |
+| UNKNOWN / hold instead of blind retry | An authenticated external outcome attestation |
+| Public, inspectable implementation slice | License rights to the private runtime |
 
-Not published here:
+The reference is AI-assisted. The engineering work combines problem framing, decisions, acceptance criteria, generated implementation, adversarial review and tests; authorship of every line is not claimed.
 
-- production credentials or customer data;
-- internal repository IDs and incident details;
-- production persistence and recovery implementation;
-- proprietary evaluator and routing logic;
-- unreleased reliability or delegation systems.
+## Feedback and contributions
 
-## What I am claiming here
+If the reference misses a failure case, [open a GitHub issue](https://github.com/SamCT86/machineoutcome-case-study/issues). Share a minimal synthetic reproduction, not passwords or private customer data.
 
-The claim is deliberately narrow: when a mutation has an ambiguous outcome, the transport result alone is not enough to decide whether success or retry is safe. The code and tests in this repository are meant to make that boundary reviewable.
-
-I am **not** claiming universal agent reliability, broad task coverage, commercial demand, or that this public slice is the production MachineOutcome runtime.
-
-This reference is AI-assisted. My role is to define the problem and system boundary, direct the implementation, set acceptance criteria, test the failure cases, verify the behavior and make the final release decision. It is not a claim that I manually wrote every line.
-
-For the current public product focus, see [my portfolio](https://www.sarmadtawfeek.com) and [GitHub profile](https://github.com/SamCT86).
-</details>
+**No sales offer, paid contract or real-money workflow is made by this repository.**

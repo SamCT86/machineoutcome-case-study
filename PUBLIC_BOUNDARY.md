@@ -1,6 +1,6 @@
 # Public disclosure boundary
 
-This repository contains a **bounded public reference implementation** for inspecting and running one engineering invariant. It is not a mirror or source release of the private MachineOutcome production system.
+This repository contains a **bounded MIT-licensed public reference implementation** for inspecting and running one engineering invariant. It is not a mirror or source release of the private MachineOutcome production system.
 
 ## Intentionally public
 
@@ -29,6 +29,6 @@ Public proof is selected by default-deny:
 
 `PRIVATE SOURCE → MINIMUM PROOF → SYNTHETIC STATE → IP/SECRET REVIEW → TEST → PUBLIC`
 
-If a technical principle can be demonstrated with a bounded state machine rather than production provider code, the bounded reference is preferred.
+## Licensing boundary
 
-No license to the private implementation is granted or implied by this public reference edition.
+The [MIT license](LICENSE) grants rights only to the software and documentation actually published in **this repository**. It does **not** license, disclose or transfer rights to the separate private implementation, private provider integrations or private operational data. The public reference does not claim production equivalence.

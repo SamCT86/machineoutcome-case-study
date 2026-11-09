@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { verifyMutationOutcome } from "../src/reference-outcome-verifier.mjs";
-import { SCENARIOS, evaluateControls, escapeHtml, toVerifierInput } from "../src/demo-model.mjs";
+import { SCENARIOS, evaluateControls, escapeHtml, toVerifierInput, displayVerdict } from "../src/demo-model.mjs";
 
 const EXPECTED = {
   ambiguousVerified: { status: "VERIFIED", reason: "POSTSTATE_CONFIRMED", retry: "DO_NOT_RETRY" },
@@ -13,13 +13,15 @@ const EXPECTED = {
 };
 
 for (const [name, scenario] of Object.entries(SCENARIOS)) {
-  test("scenario " + name + " executes through canonical verifier and renders the exact outcome", () => {
+  test("scenario " + name + " executes through unchanged canonical verifier but labels visual output as synthetic", () => {
     const { input, output, markup } = evaluateControls(scenario.controls, verifyMutationOutcome);
     assert.deepEqual(output, EXPECTED[name]);
-    assert.match(markup, new RegExp(">" + output.status + "<"));
+    assert.match(markup, new RegExp(">" + displayVerdict(output) + "<"));
+    assert.doesNotMatch(markup, new RegExp("<h3[^>]*>" + output.status + "</h3>"));
+    assert.match(markup, /External effect: UNKNOWN/);
     assert.match(markup, new RegExp(output.reason));
     assert.match(markup, new RegExp(output.retry.replaceAll("_", " ")));
-    assert.match(markup, /Safe next action/);
+    assert.match(markup, /NOT authorization to execute or retry/);
     assert.match(markup, /Inspect exact verifier input and output/);
     assert.equal(input.taskId, "task:repo-change-001");
   });

@@ -69,7 +69,7 @@ resetButton.addEventListener("click", () => {
   setControls(SCENARIOS.ambiguousVerified.controls);
   renderPresets();
   validation.textContent = "";
-  result.innerHTML = '<div class="empty-state"><p class="eyebrow">READY</p><h3>Run an ambiguous action.</h3><p>You will get an outcome status, reason, safe retry decision, evidence trace and the exact verifier input/output.</p></div>';
+  result.innerHTML = '<div class="empty-state"><p class="eyebrow">READY</p><h3>Run an ambiguous action.</h3><p>You will get a local simulated verdict, an illustrative hold recommendation and the raw verifier input/output; external effect remains UNKNOWN.</p></div>';
 });
 
 guidedButton.addEventListener("click", () => {

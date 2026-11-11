@@ -30,7 +30,11 @@ function renderPresets() {
       selected = key;
       setControls(scenario.controls);
       validation.textContent = "";
+      const restoreFocus = document.activeElement === button;
       renderPresets();
+      if (restoreFocus) {
+        presets.querySelector('[data-scenario="' + key + '"]')?.focus({ preventScroll: true });
+      }
       evaluate(scenario.controls);
     });
     presets.append(button);

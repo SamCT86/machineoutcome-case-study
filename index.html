@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#111827" />
-  <meta name="description" content="Interactive synthetic MachineOutcome lab: verify what actually happened before an agent retries an external action." />
+  <meta name="description" content="Interactive synthetic MachineOutcome lab: compare fictional states. No real provider evidence or retry authorization." />
   <title>MachineOutcome — Outcome Verification Lab</title>
   <link rel="stylesheet" href="./styles.css" />
 </head>
@@ -24,8 +24,8 @@
     <section class="hero shell">
       <div class="hero-copy">
         <p class="eyebrow">OUTCOME VERIFICATION FOR AGENTIC SYSTEMS</p>
-        <h1>A timeout is not a failure. Prove what happened before retrying.</h1>
-        <p class="lede">MachineOutcome demonstrates one reliability rule: when an external action has an ambiguous result, <strong>read back the real state before success or retry is trusted.</strong></p>
+        <h1>A timeout is not proof of failure. Compare synthetic states before retrying.</h1>
+        <p class="lede">MachineOutcome illustrates a reliability rule: after an ambiguous external action, <strong>reconcile authenticated provider evidence before deciding the outcome or retrying.</strong> This page uses fictional, user-controlled fields.</p>
         <div class="hero-actions">
           <button class="button primary" type="button" data-run-guided>Run the 30-second failure</button>
           <a class="button secondary" href="#lab">Break it yourself</a>
@@ -42,11 +42,11 @@
         <ol>
           <li><span>01</span><b>MUTATION</b><em>attempted</em></li>
           <li><span>02</span><b>ACK</b><em class="warn">timeout</em></li>
-          <li><span>03</span><b>READBACK</b><em>expected state</em></li>
-          <li><span>04</span><b>OUTCOME</b><em class="good">verified</em></li>
+          <li><span>03</span><b>CLAIM</b><em>expected state</em></li>
+          <li><span>04</span><b>LOCAL CHECK</b><em>local match</em></li>
           <li><span>05</span><b>RETRY</b><em class="blocked">blocked</em></li>
         </ol>
-        <p>transport certainty: <strong>low</strong><br />outcome certainty: <strong>verified by state</strong></p>
+        <p>transport certainty: <strong>synthetic</strong><br />real effect: <strong>UNKNOWN · no provider contacted</strong></p>
       </aside>
     </section>
 
@@ -57,7 +57,7 @@
           <article><span>1</span><h2>Action leaves your process</h2><p>An agent asks another system to mutate something.</p></article>
           <article><span>2</span><h2>Acknowledgement disappears</h2><p>The request times out after the external system may already have changed.</p></article>
           <article><span>3</span><h2>Naive retry duplicates work</h2><p>Treating silence as failure can create a second write, deploy, payment or message.</p></article>
-          <article><span>4</span><h2>Read reality first</h2><p>Observed post-state decides whether success or retry is safe.</p></article>
+          <article><span>4</span><h2>Read reality first</h2><p>Only independent, authenticated provider evidence can inform a real decision; this simulated lab cannot authorize replay.</p></article>
         </div>
       </div>
     </section>
@@ -66,9 +66,9 @@
       <div class="section-heading">
         <div>
           <p class="eyebrow">TRY IT WITHOUT INSTALLING ANYTHING</p>
-          <h2>Change the evidence. Watch the safe action change.</h2>
+          <h2>Change simulated fields. See how the local check responds.</h2>
         </div>
-        <p>This lab calls the same bounded verifier exported by this public repository. It never contacts a provider and never performs a mutation.</p>
+        <p>This lab runs a bounded local verifier on fictional fields you choose. It never contacts a provider, performs a mutation, or proves any real external outcome or authorization to retry.</p>
       </div>
 
       <div class="presets" id="presets" role="group" aria-label="Scenario presets"></div>
@@ -76,31 +76,31 @@
       <div class="lab-grid">
         <form id="lab-form" class="controls">
           <div class="panel-title">SIMULATED EVIDENCE</div>
-          <label><span>Provider acknowledgement</span><small>Did the transport say the action was accepted?</small><select name="ack"><option value="accepted">Accepted</option><option value="ambiguous">Timeout / ambiguous</option></select></label>
-          <label><span>Starting state</span><small>Did reality still match the state the action was allowed to start from?</small><select name="prestate"><option value="match">Matches expected pre-state</option><option value="stale">Changed before the action</option></select></label>
-          <label><span>Provider readback</span><small>Were we able to read the external state after the attempt?</small><select name="readback"><option value="complete">Complete</option><option value="incomplete">Incomplete / unavailable</option></select></label>
-          <label><span>Observed post-state</span><small>What did the external system actually show?</small><select name="poststate"><option value="expected">Expected new state</option><option value="unchanged">Still at the old state</option><option value="unexpected">Different unexpected state</option></select></label>
-          <label><span>Evidence identity</span><small>Does the readback belong to this exact task and attempt?</small><select name="identity"><option value="exact">Exact task + exact attempt</option><option value="wrong-attempt">Wrong attempt</option><option value="wrong-task">Wrong task</option></select></label>
-          <div class="actions"><button class="button primary" type="submit">Verify outcome</button><button class="button quiet" type="button" data-reset>Reset</button></div>
+          <label><span>Claimed acknowledgement</span><small>What does this synthetic fixture claim the transport returned?</small><select name="ack"><option value="accepted">Accepted</option><option value="ambiguous">Timeout / ambiguous</option></select></label>
+          <label><span>Claimed starting state</span><small>Choose a fictional state, not a real provider observation.</small><select name="prestate"><option value="match">Matches expected pre-state</option><option value="stale">Changed before the action</option></select></label>
+          <label><span>Claimed readback</span><small>Choose whether the fixture claims to have a complete readback; no network is contacted.</small><select name="readback"><option value="complete">Complete</option><option value="incomplete">Incomplete / unavailable</option></select></label>
+          <label><span>Claimed post-state</span><small>Choose what the fictional external system supposedly showed.</small><select name="poststate"><option value="expected">Expected new state</option><option value="unchanged">Still at the old state</option><option value="unexpected">Different unexpected state</option></select></label>
+          <label><span>Claimed evidence identity</span><small>A matching label here is not authenticated attempt attribution.</small><select name="identity"><option value="exact">Exact task + exact attempt</option><option value="wrong-attempt">Wrong attempt</option><option value="wrong-task">Wrong task</option></select></label>
+          <div class="actions"><button class="button primary" type="submit">Compare synthetic fields</button><button class="button quiet" type="button" data-reset>Reset</button></div>
           <p id="validation" class="validation" role="alert" aria-live="polite"></p>
         </form>
 
         <section id="result" class="result" aria-live="polite">
-          <div class="empty-state"><p class="eyebrow">READY</p><h3>Run an ambiguous action.</h3><p>You will get an outcome status, reason, safe retry decision, evidence trace and the exact verifier input/output.</p></div>
+          <div class="empty-state"><p class="eyebrow">READY</p><h3>Run an ambiguous action.</h3><p>You will get a local simulated verdict, an illustrative hold recommendation and the raw verifier input/output; external effect remains UNKNOWN.</p></div>
         </section>
       </div>
     </section>
 
     <section id="proof" class="proof shell">
       <div class="section-heading">
-        <div><p class="eyebrow">WHAT THIS PROVES</p><h2>Small enough to inspect. Strict enough to fail closed.</h2></div>
-        <p>The public lab demonstrates one invariant. It is not the private MachineOutcome runtime and it does not claim customer adoption, ROI or universal agent reliability.</p>
+        <div><p class="eyebrow">WHAT THIS LAB DEMONSTRATES</p><h2>Small enough to inspect. Strict enough to fail closed.</h2></div>
+        <p>This public MIT lab illustrates comparison and uncertainty handling only. It is not the private MachineOutcome runtime, provider attestation, customer outcome evidence or retry permission.</p>
       </div>
       <div class="proof-grid">
-        <article><span>01</span><h3>Bind evidence</h3><p>Wrong-task and wrong-attempt evidence cannot prove the action.</p></article>
-        <article><span>02</span><h3>Bind pre-state</h3><p>A stale starting state blocks the mutation boundary.</p></article>
-        <article><span>03</span><h3>Read after ambiguity</h3><p>Transport timeout does not decide the real outcome.</p></article>
-        <article><span>04</span><h3>Keep UNKNOWN</h3><p>Missing or ambiguous reality stays unresolved instead of being guessed into success or failure.</p></article>
+        <article><span>01</span><h3>Bind evidence</h3><p>Mismatched task or attempt labels are rejected by the local reference; matching labels alone cannot prove the action.</p></article>
+        <article><span>02</span><h3>Bind pre-state</h3><p>A mismatched fictional starting state triggers a local guard recommendation; no mutation is performed.</p></article>
+        <article><span>03</span><h3>Read after ambiguity</h3><p>Neither transport timeout nor a synthetic local match decides a real external outcome.</p></article>
+        <article><span>04</span><h3>Keep UNKNOWN</h3><p>Insufficient supplied evidence remains UNKNOWN; the demo never grants permission to retry.</p></article>
       </div>
       <div class="proof-actions">
         <a class="button secondary" href="https://github.com/SamCT86/machineoutcome-case-study">Inspect the source and tests</a>

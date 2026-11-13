@@ -8,7 +8,7 @@ Thanks for helping improve this small, MIT-licensed, public reference implementa
 - Tests for stale pre-state, mismatched task/attempt evidence, missing readback and unsafe retry claims.
 - Documentation or accessibility improvements that make the public demo clearer.
 
-Please open an issue first for a large behavior or API change. Keep proposed changes scoped to the files already in this public repository.
+Before proposing a large behavior or API change, [email the public project contact](mailto:sarmad@machineoutcome.com?subject=MachineOutcome%20public%20reference%20contribution) with a synthetic description. Keep proposed changes scoped to the files already in this public repository.
 
 ## Test locally
 

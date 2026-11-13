@@ -66,6 +66,6 @@ The reference is AI-assisted. The engineering work combines problem framing, dec
 
 ## Feedback and contributions
 
-If the reference misses a failure case, [open a GitHub issue](https://github.com/SamCT86/machineoutcome-case-study/issues). Share a minimal synthetic reproduction, not passwords or private customer data. See [CONTRIBUTING.md](CONTRIBUTING.md).
+If the reference misses a failure case, [email the public project contact](mailto:sarmad@machineoutcome.com?subject=MachineOutcome%20public%20reference%20feedback) with a minimal synthetic reproduction. Describe expected vs. observed behavior; never send passwords, private source, customer data or raw provider logs. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 **No sales offer, paid contract or real-money workflow is made by this repository.**

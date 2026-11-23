@@ -31,10 +31,16 @@ jobs:
       - name: Build minimal static artifact
         run: |
           set -euo pipefail
-          mkdir -p _site/src
-          cp index.html app.js styles.css _site/
+          mkdir -p _site/src _site/lab/src
+          cp root-redirect.html _site/index.html
+          cp index.html app.js styles.css _site/lab/
+          cp app.js styles.css _site/
           cp src/reference-outcome-verifier.mjs src/demo-model.mjs _site/src/
+          cp src/reference-outcome-verifier.mjs src/demo-model.mjs _site/lab/src/
           test -s _site/index.html
+          test -s _site/lab/index.html
+          test -s _site/lab/app.js
+          test -s _site/lab/src/demo-model.mjs
           test -s _site/app.js
           test -s _site/styles.css
           test -s _site/src/reference-outcome-verifier.mjs
